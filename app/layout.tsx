@@ -28,20 +28,7 @@ export const metadata: Metadata = {
   generator: 'v0.app',
   keywords: ['スクイーズ', 'かわいい', '触り心地'],
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
+    icon: '/tabajoy-icon.jpeg',
     apple: '/apple-icon.png',
   },
 }

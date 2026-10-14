@@ -15,11 +15,11 @@ const footerLinks = {
   support: [
     { name: "お問い合わせ", href: "/" },
     { name: "よくあるご質問", href: "/" },
-    { name: "配送について", href: "#" }, // TODO(第4批)
-    { name: "返品・交換について", href: "#" }, // TODO(第4批)
-    { name: "特定商取引法に基づく表記", href: "#" }, // TODO(第4批)
-    { name: "プライバシーポリシー", href: "#" }, // TODO(第4批)
-    { name: "利用規約", href: "#" } // TODO(第4批)
+    { name: "配送について", href: "/shipping" },
+    { name: "返品・交換について", href: "/returns" },
+    { name: "特定商取引法に基づく表記", href: "/tokushoho" },
+    { name: "プライバシーポリシー", href: "/privacy" },
+    { name: "利用規約", href: "/terms" }
   ]
 }
 
@@ -131,10 +131,10 @@ export function Footer() {
               © {new Date().getFullYear()} Tabajoy
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground boty-transition">
+              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground boty-transition">
                 プライバシーポリシー
               </Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground boty-transition">
+              <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground boty-transition">
                 利用規約
               </Link>
             </div>
