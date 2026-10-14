@@ -33,13 +33,13 @@ export function Header() {
               ショップ
             </Link>
             <Link
-              href="/"
+              href="/brand-story"
               className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               ブランドストーリー
             </Link>
             <Link
-              href="/shop"
+              href="/#squeeze-list"
               className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               スクイーズ一覧
@@ -102,19 +102,19 @@ export function Header() {
               ショップ
             </Link>
             <Link
-              href="/"
+              href="/brand-story"
               className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               ブランドストーリー
             </Link>
             <Link
-              href="/shop"
+              href="/#squeeze-list"
               className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               スクイーズ一覧
             </Link>
             <Link
-              href="/"
+              href="/account"
               className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               アカウント

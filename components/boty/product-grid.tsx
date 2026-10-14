@@ -111,7 +111,7 @@ export function ProductGrid() {
   }, [])
 
   return (
-    <section className="py-24 bg-card">
+    <section id="squeeze-list" className="py-24 bg-card">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div ref={headerRef} className="text-center mb-12">
           <span className={`text-sm tracking-[0.2em] text-primary mb-4 block ${headerVisible ? 'animate-blur-in opacity-0' : 'opacity-0'}`} style={headerVisible ? { animationDelay: '0.2s', animationFillMode: 'forwards' } : {}}>

@@ -1,6 +1,8 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
+import useEmblaCarousel from "embla-carousel-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const reviews = [
   { product: "たまごおにぎり", rating: 5, profile: "高校生・女性", title: "おにぎりなのにスクイーズ、反則でしょ", body: "友達の誕生日に買ったけど、自分用にも欲しくなって結局２個買いました。たまごのところがつるつるで、おにぎりの部分は米粒っぽいざらつきがあって、見たままの質感なのがすごい。握るとゆっくり形が変わるので、授業の合間にずっと触ってます。" },
@@ -60,41 +62,86 @@ const reviews = [
 ]
 
 export function Testimonials() {
-  const [visibleCount, setVisibleCount] = useState(10)
-  const reviewsRef = useRef<HTMLDivElement>(null)
+  const [carouselRef, carouselApi] = useEmblaCarousel({ loop: true, align: "start", containScroll: false })
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
-  const handleShowMore = () => setVisibleCount(count => Math.min(count + 10, reviews.length))
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches)
+    updatePreference()
+    mediaQuery.addEventListener("change", updatePreference)
+    return () => mediaQuery.removeEventListener("change", updatePreference)
+  }, [])
+
+  useEffect(() => {
+    if (!carouselApi) return
+    const updateSelected = () => setSelectedIndex(carouselApi.selectedScrollSnap())
+    updateSelected()
+    carouselApi.on("select", updateSelected)
+    return () => { carouselApi.off("select", updateSelected) }
+  }, [carouselApi])
+
+  useEffect(() => {
+    if (!carouselApi || isPaused || prefersReducedMotion) return
+    const timer = window.setInterval(() => carouselApi.scrollNext(), 4200)
+    return () => window.clearInterval(timer)
+  }, [carouselApi, isPaused, prefersReducedMotion])
+
+  const reviewCount = reviews.length
+  const goToPrevious = () => carouselApi?.scrollPrev()
+  const goToNext = () => carouselApi?.scrollNext()
 
   return (
-    <section ref={reviewsRef} className="py-20 bg-card">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <span className="text-sm tracking-[0.2em] text-primary mb-4 block">購入者レビュー</span>
-          <h2 className="font-serif text-4xl leading-tight text-foreground text-balance md:text-6xl">レビュー</h2>
-          <p className="text-sm text-muted-foreground mt-4">1688販売ページに寄せられたレビュー</p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {reviews.slice(0, visibleCount).map((review, index) => (
-            <article key={`${review.product}-${index}`} className="rounded-3xl p-6 bg-background boty-shadow">
-              <div className="flex items-center justify-between gap-3 mb-3">
-                <span className="text-xs text-primary">{review.product}</span>
-                <span className="text-sm text-foreground" aria-label={`${review.rating} / 5`}>{"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)}</span>
-              </div>
-              <h3 className="font-medium text-foreground mb-3">{review.title}</h3>
-              <p className="text-sm text-foreground/80 leading-relaxed mb-4">{review.body}</p>
-              <p className="text-xs text-muted-foreground">{review.profile}</p>
-            </article>
-          ))}
-        </div>
-
-        {visibleCount < reviews.length && (
-          <div className="text-center mt-10">
-            <button type="button" onClick={handleShowMore} className="px-8 py-4 rounded-full border border-foreground/20 text-foreground hover:bg-background boty-transition">
-              もっと見る
+    <section className="py-12 md:py-16 bg-card">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
+          <div>
+            <span className="text-sm tracking-[0.2em] text-primary mb-2 block">購入者レビュー</span>
+            <h2 className="font-serif text-3xl leading-tight text-foreground md:text-4xl">レビュー</h2>
+            <p className="text-xs text-muted-foreground mt-2">1688販売ページに寄せられたレビュー</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-muted-foreground" aria-live="polite">{selectedIndex + 1} / {reviewCount}</span>
+            <button type="button" onClick={goToPrevious} className="w-10 h-10 rounded-full border border-border bg-background flex items-center justify-center" aria-label="前のレビュー">
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button type="button" onClick={goToNext} className="w-10 h-10 rounded-full border border-border bg-background flex items-center justify-center" aria-label="次のレビュー">
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
-        )}
+        </div>
+
+        <div
+          ref={carouselRef}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="購入者レビュー"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={() => setIsPaused(true)}
+          onBlurCapture={event => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsPaused(false)
+          }}
+          className="overflow-hidden"
+        >
+          <div className="flex -ml-3">
+            {reviews.map((review, index) => (
+              <div key={`${review.product}-${index}`} role="group" aria-roledescription="slide" aria-label={`${index + 1} / ${reviews.length}`} className="min-w-0 shrink-0 grow-0 basis-[86%] sm:basis-1/2 lg:basis-1/3 pl-3">
+                <article className="h-full rounded-2xl p-4 md:p-5 bg-background boty-shadow">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-xs text-primary truncate">{review.product}</span>
+                    <span className="text-xs text-foreground shrink-0" aria-label={`${review.rating} / 5`}>{"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)}</span>
+                  </div>
+                  <h3 className="font-medium text-foreground text-sm mb-2">{review.title}</h3>
+                  <p className="text-sm text-foreground/80 leading-relaxed line-clamp-4 mb-3">{review.body}</p>
+                  <p className="text-xs text-muted-foreground">{review.profile}</p>
+                </article>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

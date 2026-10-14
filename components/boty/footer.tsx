@@ -10,7 +10,7 @@ const footerLinks = {
     { name: "スクイーズ一覧", href: "/shop" }
   ],
   about: [
-    { name: "ブランドストーリー", href: "/" }
+    { name: "ブランドストーリー", href: "/brand-story" }
   ],
   support: [
     { name: "お問い合わせ", href: "/" },
