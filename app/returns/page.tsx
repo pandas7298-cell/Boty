@@ -2,7 +2,8 @@ import { LegalPage, legalPageMetadata } from "@/components/boty/legal-page"
 
 export const metadata = legalPageMetadata(
   "返品・交換について",
-  "Tabajoyでご購入いただいた商品の返品・交換に関するご案内。"
+  "Tabajoyでご購入いただいた商品の返品・交換に関するご案内。",
+  "/returns"
 )
 
 export default function ReturnsPage() {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/boty/header"
 import { Hero } from "@/components/boty/hero"
 import { TrustBadges } from "@/components/boty/trust-badges"
@@ -8,6 +9,12 @@ import { CTABanner } from "@/components/boty/cta-banner"
 
 import { Newsletter } from "@/components/boty/newsletter"
 import { Footer } from "@/components/boty/footer"
+
+export const metadata: Metadata = {
+  title: "Tabajoy｜ぷにっと、ひとやすみ。",
+  description: "Tabajoyのスクイーズ。手で触れる、小さなひと休みを。",
+  alternates: { canonical: "/" },
+}
 
 export default function HomePage() {
   return (

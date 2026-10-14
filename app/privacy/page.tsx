@@ -2,7 +2,8 @@ import { LegalPage, legalPageMetadata } from "@/components/boty/legal-page"
 
 export const metadata = legalPageMetadata(
   "プライバシーポリシー",
-  "Tabajoyにおける個人情報の取り扱いについて。"
+  "Tabajoyにおける個人情報の取り扱いについて。",
+  "/privacy"
 )
 
 export default function PrivacyPage() {

@@ -8,8 +8,12 @@ type LegalPageProps = {
   children: React.ReactNode
 }
 
-export function legalPageMetadata(title: string, description: string): Metadata {
-  return { title: `${title}｜Tabajoy`, description }
+export function legalPageMetadata(title: string, description: string, path?: string): Metadata {
+  return {
+    title: `${title}｜Tabajoy`,
+    description,
+    ...(path ? { alternates: { canonical: path } } : {}),
+  }
 }
 
 export function LegalPage({ title, description, children }: LegalPageProps) {

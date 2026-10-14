@@ -7,6 +7,7 @@ import { Footer } from "@/components/boty/footer"
 export const metadata: Metadata = {
   title: "ブランドストーリー｜Tabajoy",
   description: "Tabajoyが大切にする、ぷにっとひとやすみ。手で触れるスクイーズのブランドストーリー。",
+  alternates: { canonical: "/brand-story" },
 }
 
 export default function BrandStoryPage() {

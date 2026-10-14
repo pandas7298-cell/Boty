@@ -2,7 +2,8 @@ import { LegalPage, legalPageMetadata } from "@/components/boty/legal-page"
 
 export const metadata = legalPageMetadata(
   "配送について",
-  "Tabajoyの配送方法、送料、発送時期についてのご案内。"
+  "Tabajoyの配送方法、送料、発送時期についてのご案内。",
+  "/shipping"
 )
 
 export default function ShippingPage() {

@@ -12,6 +12,7 @@ const zenMaruGothic = Zen_Maru_Gothic({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://tabajoy.com'),
   title: 'Tabajoy｜ぷにっと、ひとやすみ。',
   description: 'Tabajoyのスクイーズ。ぷにっと、ひとやすみ。手に取って楽しむ、やわらかな触り心地。',
   openGraph: {

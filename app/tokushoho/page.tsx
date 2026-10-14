@@ -2,7 +2,8 @@ import { LegalPage, legalPageMetadata } from "@/components/boty/legal-page"
 
 export const metadata = legalPageMetadata(
   "特定商取引法に基づく表記",
-  "Tabajoyの販売事業者、販売価格、お支払い方法などの表示。"
+  "Tabajoyの販売事業者、販売価格、お支払い方法などの表示。",
+  "/tokushoho"
 )
 
 export default function TokushohoPage() {

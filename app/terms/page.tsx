@@ -2,7 +2,8 @@ import { LegalPage, legalPageMetadata } from "@/components/boty/legal-page"
 
 export const metadata = legalPageMetadata(
   "利用規約",
-  "Tabajoyのウェブサイトおよびサービスをご利用いただく際の規約。"
+  "Tabajoyのウェブサイトおよびサービスをご利用いただく際の規約。",
+  "/terms"
 )
 
 export default function TermsPage() {
