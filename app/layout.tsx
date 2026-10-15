@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Zen_Maru_Gothic } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { CartProvider } from "@/components/boty/cart-context"
+import { CartProvider } from "@/components/tabajoy/cart-context"
 import { LocaleProvider } from "@/lib/i18n"
 import { requestLocale } from "@/lib/server-locale"
 import { localePageMetadata } from "@/lib/page-metadata"
