@@ -55,7 +55,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const locale = await requestLocale()
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${zenMaruGothic.variable} font-sans antialiased`}>
         <LocaleProvider locale={locale}>
           <CartProvider>{children}</CartProvider>
