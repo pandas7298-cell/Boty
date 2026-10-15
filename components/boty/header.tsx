@@ -53,9 +53,9 @@ export function Header() {
             </button>
             <nav aria-label={t.language} className="hidden items-center gap-1 sm:flex">
               {locales.map(value => (
-                <Link key={value} href={localizedPath(pathname, value)} aria-label={`${t.language}: ${localeName[value]}`} aria-current={locale === value ? "page" : undefined} className={`rounded-full px-3 py-2 text-xs font-medium boty-transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${locale === value ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-foreground"}`}>
+                <a key={value} href={localizedPath(pathname, value)} aria-label={`${t.language}: ${localeName[value]}`} aria-current={locale === value ? "page" : undefined} className={`rounded-full px-3 py-2 text-xs font-medium boty-transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${locale === value ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-foreground"}`}>
                   {localeShortName[value]}
-                </Link>
+                </a>
               ))}
             </nav>
           </div>
@@ -70,7 +70,7 @@ export function Header() {
             <Link href={localize("/#squeeze-list")} className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">{t.productList}</Link>
             <Link href={localize("/account")} className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition">{t.account}</Link>
             <div className="flex items-center gap-2 pt-2" role="group" aria-label={t.language}>
-              {locales.map(value => <Link key={value} href={localizedPath(pathname, value)} aria-current={locale === value ? "page" : undefined} className={`rounded-full px-3 py-2 text-xs font-medium ${locale === value ? "bg-primary text-primary-foreground" : "text-foreground/70"}`}>{localeShortName[value]}</Link>)}
+              {locales.map(value => <a key={value} href={localizedPath(pathname, value)} aria-current={locale === value ? "page" : undefined} className={`rounded-full px-3 py-2 text-xs font-medium ${locale === value ? "bg-primary text-primary-foreground" : "text-foreground/70"}`}>{localeShortName[value]}</a>)}
             </div>
           </div>
         </div>
