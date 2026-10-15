@@ -141,38 +141,35 @@ export function ProductGrid() {
 
         <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product, index) => (
-            <Link
+            <div
               key={`${selectedCategory}-${product.id}`}
-              href={`/product/${product.id}`}
-              className={`group transition-all duration-500 ease-out ${isVisible && !isTransitioning ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              className={`group relative transition-all duration-500 ease-out ${isVisible && !isTransitioning ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
               style={{ transitionDelay: isTransitioning ? '0ms' : `${index * 80}ms` }}
             >
-              <div className="bg-background rounded-3xl overflow-hidden boty-shadow boty-transition group-hover:scale-[1.02]">
-                <div className="relative aspect-square bg-muted overflow-hidden">
-                  <Image src={product.image} alt={`${product.name}の商品画像`} fill className="object-cover boty-transition group-hover:scale-105" />
-                  <button
-                    type="button"
-                    className="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 boty-transition boty-shadow"
-                    onClick={event => {
-                      event.preventDefault()
-                      event.stopPropagation()
-                      addItem({ id: product.id, name: product.name, description: product.description, price: product.price, image: product.image })
-                    }}
-                    aria-label="カートに入れる"
-                  >
-                    <ShoppingBag className="w-4 h-4 text-foreground" />
-                  </button>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-serif text-xl text-foreground mb-2">{product.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">{product.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {product.tags.map(tag => <span key={tag} className="text-xs text-primary/80">{tag}</span>)}
+              <Link href={`/product/${product.id}`} className="block rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                <div className="bg-background rounded-3xl overflow-hidden boty-shadow boty-transition group-hover:scale-[1.02]">
+                  <div className="relative aspect-square bg-muted overflow-hidden">
+                    <Image src={product.image} alt={`${product.name}の商品画像`} fill className="object-cover boty-transition group-hover:scale-105" />
                   </div>
-                  <p className="font-medium text-foreground">{formatJPY.format(product.price)}（税込）</p>
+                  <div className="p-5">
+                    <h3 className="font-serif text-xl text-foreground mb-2">{product.name}</h3>
+                    <p className="text-sm text-muted-foreground mb-3">{product.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {product.tags.map(tag => <span key={tag} className="text-xs text-primary/80">{tag}</span>)}
+                    </div>
+                    <p className="font-medium text-foreground">{formatJPY.format(product.price)}（税込）</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+              <button
+                type="button"
+                className="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-background/95 text-foreground boty-transition boty-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                onClick={() => addItem({ id: product.id, name: product.name, description: product.description, price: product.price, image: product.image })}
+                aria-label={`${product.name}をカートに入れる`}
+              >
+                <ShoppingBag className="w-4 h-4" />
+              </button>
+            </div>
           ))}
         </div>
 

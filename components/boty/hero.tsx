@@ -5,45 +5,34 @@ import { ArrowRight } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ backgroundColor: '#e3e1e2' }}>
-      {/* Background Video */}
-      <div className="border-b border-border/50 p-6 py-2" style={{ backgroundColor: '#e3e1e2' }}>
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#e3e1e2] py-28 lg:py-0">
+      <div className="pointer-events-none absolute inset-0 bg-[#e3e1e2]" aria-hidden="true">
         <video
           autoPlay
           muted
           loop
           playsInline
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            minWidth: '100%',
-            minHeight: '100%',
-            width: 'auto',
-            height: 'auto',
-            objectFit: 'cover'
-          }}
+          className="absolute left-1/2 top-1/2 h-full min-h-full w-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover"
           poster="/products/croissant-cat.png"
+          aria-hidden="true"
         >
           <source src="/products/homepage.mp4" type="video/mp4" />
         </video>
-        {/* Bottom fade gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-background via-background/50 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-background via-background/50 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full pt-20 mr-14 lg:mr-0">
+      <div className="relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="w-full lg:max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-            <span className="text-sm mb-6 block text-black animate-blur-in opacity-0 tracking-normal" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+          <div className="w-full max-w-2xl mx-auto text-center lg:mx-0 lg:text-left">
+            <span className="text-sm mb-4 block text-black animate-blur-in opacity-0 tracking-normal" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               Tabajoy
             </span>
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-6 text-balance text-black">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-5 text-balance text-black">
               <span className="block animate-blur-in opacity-0 font-semibold" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>ぷにっと、ひとやすみ。</span>
-              <span className="block animate-blur-in opacity-0 font-semibold xl:text-9xl text-7xl" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>Tabajoyのスクイーズ</span>
+              <span className="block animate-blur-in opacity-0 font-semibold text-5xl sm:text-6xl lg:text-7xl" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>Tabajoyのスクイーズ</span>
             </h2>
-            <p className="text-lg leading-relaxed mb-10 max-w-md mx-auto lg:mx-0 text-black animate-blur-in opacity-0" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+            <p className="text-base sm:text-lg leading-relaxed mb-7 max-w-md mx-auto lg:mx-0 text-black animate-blur-in opacity-0" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
               食べものや星の形。ぎゅっと押すと、指先にやわらかさが伝わります。手で触れる小さなひと休みを、日々のそばに。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-blur-in opacity-0" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>

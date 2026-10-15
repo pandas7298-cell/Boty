@@ -17,7 +17,7 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2 text-foreground/80 hover:text-foreground boty-transition"
+            className="lg:hidden h-11 w-11 p-2 text-foreground/80 hover:text-foreground boty-transition"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="メニューを開く"
           >
@@ -58,14 +58,14 @@ export function Header() {
           <div className="flex items-center gap-4">
             <button
               type="button"
-              className="p-2 text-foreground/70 hover:text-foreground boty-transition"
+              className="h-11 w-11 p-2 text-foreground/70 hover:text-foreground boty-transition"
               aria-label="検索"
             >
               <Search className="w-5 h-5" />
             </button>
             <Link
               href="/account"
-              className="hidden sm:block p-2 text-foreground/70 hover:text-foreground boty-transition"
+              className="hidden h-11 w-11 text-foreground/70 hover:text-foreground boty-transition sm:block"
               aria-label="アカウント"
             >
               <User className="w-5 h-5" />
@@ -73,12 +73,12 @@ export function Header() {
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="relative p-2 text-foreground/70 hover:text-foreground boty-transition"
+              className="relative h-11 w-11 text-foreground/70 hover:text-foreground boty-transition"
               aria-label="カート"
             >
               <ShoppingBag className="w-5 h-5" />
               {itemCount > 0 && (
-                <span className="absolute -top-0 -right-0 w-4 h-4 bg-primary text-primary-foreground text-[10px] flex items-center justify-center rounded-full">
+                <span aria-live="polite" className="absolute -top-0 -right-0 min-w-4 h-4 px-1 bg-primary text-primary-foreground text-[10px] flex items-center justify-center rounded-full">
                   {itemCount}
                 </span>
               )}
