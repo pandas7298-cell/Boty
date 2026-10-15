@@ -8,42 +8,19 @@ import { useCart } from "./cart-context"
 import { useLocale, useMessages, formatPrice, getProductCopy } from "@/lib/i18n"
 import { products } from "@/lib/products"
 
-const categories = [
-  { key: "すべて", label: { en: "All", zh: "全部", ja: "すべて" } },
-  { key: "食べもの", label: { en: "Food", zh: "食物", ja: "食べもの" } },
-  { key: "どうぶつ", label: { en: "Animals", zh: "动物", ja: "どうぶつ" } },
-  { key: "星", label: { en: "Stars", zh: "星星", ja: "星" } },
-  { key: "キーホルダー", label: { en: "Keychains", zh: "挂件", ja: "キーホルダー" } },
-] as const
-
-const categoryByLocale = {
-  en: { "食べもの": "Food", "どうぶつ": "Animals", "星": "Stars", "キーホルダー": "Keychains" },
-  zh: { "食べもの": "食物", "どうぶつ": "动物", "星": "星星", "キーホルダー": "挂件" },
-  ja: { "食べもの": "食べもの", "どうぶつ": "どうぶつ", "星": "星", "キーホルダー": "キーホルダー" },
-} as const
+const featuredProductIds = ["bread-collection", "sleepy-star", "salmon-sushi-cat"] as const
+const featuredProducts = featuredProductIds
+  .map(id => products.find(product => product.id === id))
+  .filter((product): product is (typeof products)[number] => product !== undefined)
 
 export function ProductGrid() {
   const locale = useLocale()
   const t = useMessages()
-  const [selectedCategory, setSelectedCategory] = useState("食べもの")
   const [isVisible, setIsVisible] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
   const [headerVisible, setHeaderVisible] = useState(false)
   const gridRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const { addItem } = useCart()
-
-  const filteredProducts = products.filter(product => product.copy[locale].categories.includes(categoryByLocale[locale][selectedCategory as keyof typeof categoryByLocale.en] ?? selectedCategory))
-
-  const handleCategoryChange = (category: string) => {
-    if (category !== selectedCategory) {
-      setIsTransitioning(true)
-      setTimeout(() => {
-        setSelectedCategory(category)
-        setTimeout(() => setIsTransitioning(false), 50)
-      }, 300)
-    }
-  }
 
   useEffect(() => {
     const gridObserver = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setIsVisible(true) }, { threshold: 0.1 })
@@ -64,17 +41,11 @@ export function ProductGrid() {
           <p className={`text-base sm:text-lg text-muted-foreground max-w-xl mx-auto ${headerVisible ? "animate-blur-in opacity-0" : "opacity-0"}`} style={headerVisible ? { animationDelay: "0.6s", animationFillMode: "forwards" } : {}}>{t.gridDescription}</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-8 md:mb-10">
-          {categories.slice(1).map(category => (
-            <button key={category.key} type="button" onClick={() => handleCategoryChange(category.label[locale])} className={`min-h-11 px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === category.label[locale] ? "bg-primary text-primary-foreground" : "bg-background text-muted-foreground hover:text-foreground"}`} aria-pressed={selectedCategory === category.label[locale]}>{category.label[locale]}</button>
-          ))}
-        </div>
-
         <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {filteredProducts.map((product, index) => {
+          {featuredProducts.map((product, index) => {
             const copy = getProductCopy(product, locale)
             return (
-              <div key={product.id} className={`group relative transition-all duration-500 ease-out ${isVisible && !isTransitioning ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} style={{ transitionDelay: isTransitioning ? "0ms" : `${index * 80}ms` }}>
+              <div key={product.id} className={`group relative transition-all duration-500 ease-out ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} style={{ transitionDelay: `${index * 80}ms` }}>
                 <Link href={locale === "en" ? `/product/${product.id}` : `/${locale}/product/${product.id}`} className="block rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
                   <div className="bg-background rounded-3xl overflow-hidden storefront-shadow storefront-transition group-hover:scale-[1.02]">
                     <div className="relative aspect-square bg-muted overflow-hidden"><Image src={product.image} alt={copy.name} fill className="object-cover storefront-transition group-hover:scale-105" /></div>

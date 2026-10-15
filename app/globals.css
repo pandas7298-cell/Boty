@@ -120,6 +120,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    cursor: pointer !important;
   }
   html {
     scroll-behavior: smooth;
