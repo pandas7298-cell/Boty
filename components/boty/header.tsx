@@ -28,19 +28,19 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-8">
             <Link
               href="/shop"
-              className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
+              className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               ショップ
             </Link>
             <Link
               href="/brand-story"
-              className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
+              className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               ブランドストーリー
             </Link>
             <Link
               href="/#squeeze-list"
-              className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
+              className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               スクイーズ一覧
             </Link>
@@ -58,14 +58,14 @@ export function Header() {
           <div className="flex items-center gap-4">
             <button
               type="button"
-              className="h-11 w-11 p-2 text-foreground/70 hover:text-foreground boty-transition"
+              className="flex h-11 w-11 shrink-0 items-center justify-center text-foreground/70 hover:text-foreground boty-transition"
               aria-label="検索"
             >
               <Search className="w-5 h-5" />
             </button>
             <Link
               href="/account"
-              className="hidden h-11 w-11 text-foreground/70 hover:text-foreground boty-transition sm:block"
+              className="hidden h-11 w-11 shrink-0 items-center justify-center text-foreground/70 hover:text-foreground boty-transition sm:flex"
               aria-label="アカウント"
             >
               <User className="w-5 h-5" />
@@ -73,7 +73,7 @@ export function Header() {
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="relative h-11 w-11 text-foreground/70 hover:text-foreground boty-transition"
+              className="relative flex h-11 w-11 shrink-0 items-center justify-center text-foreground/70 hover:text-foreground boty-transition"
               aria-label="カート"
             >
               <ShoppingBag className="w-5 h-5" />
@@ -97,25 +97,25 @@ export function Header() {
           <div className="flex flex-col gap-4 pt-4 border-t border-border/50">
             <Link
               href="/shop"
-              className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
+              className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               ショップ
             </Link>
             <Link
               href="/brand-story"
-              className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
+              className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               ブランドストーリー
             </Link>
             <Link
               href="/#squeeze-list"
-              className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
+              className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               スクイーズ一覧
             </Link>
             <Link
               href="/account"
-              className="text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
+              className="flex h-11 items-center text-sm tracking-wide text-foreground/70 hover:text-foreground boty-transition"
             >
               アカウント
             </Link>
