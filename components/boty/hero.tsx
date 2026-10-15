@@ -28,10 +28,10 @@ export function Hero() {
       <div className="relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="w-full max-w-2xl mx-auto text-center lg:mx-0 lg:text-left">
-            <span className="text-sm mb-4 block text-black animate-blur-in opacity-0 tracking-normal" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+            <span className="text-sm mb-4 block text-primary animate-blur-in opacity-0 tracking-normal" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               Tabajoy
             </span>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-5 text-balance text-black">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-5 text-balance text-primary">
               <span className="block animate-blur-in opacity-0 font-semibold" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>{t.heroLine}</span>
               <span className="block animate-blur-in opacity-0 font-semibold text-5xl sm:text-6xl lg:text-7xl" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>{t.heroTitle}</span>
             </h2>

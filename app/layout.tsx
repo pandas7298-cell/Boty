@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export const viewport = { themeColor: "#F7F4EF" }
+export const viewport = { themeColor: "#FAF8F6" }
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const locale = await requestLocale()

@@ -5,75 +5,74 @@
 
 /* Boty — Natural Skincare Theme */
 :root {
-  /* Brand Colors: Sand, Cream, Warm Beige, Olive Green, Soft Taupe, Charcoal */
-  --background: #F7F4EF; /* Cream */
-  --foreground: #2C2C2C; /* Charcoal */
-  --card: #EDE6DC; /* Sand */
-  --card-foreground: #2C2C2C;
-  --popover: #F7F4EF;
-  --popover-foreground: #2C2C2C;
-  --primary: #4F5B3A; /* Olive Green */
-  --primary-foreground: #F7F4EF;
-  --secondary: #D8CFC4; /* Warm Beige */
-  --secondary-foreground: #2C2C2C;
-  --muted: #EDE6DC; /* Sand */
-  --muted-foreground: #6B6560;
-  --accent: #B8ADA3; /* Soft Taupe */
-  --accent-foreground: #2C2C2C;
-  --destructive: #A65D57;
-  --destructive-foreground: #F7F4EF;
-  --border: #D8CFC4;
-  --input: #EDE6DC;
-  --ring: #4F5B3A;
-  --chart-1: #4F5B3A;
-  --chart-2: #B8ADA3;
-  --chart-3: #D8CFC4;
-  --chart-4: #8B9A6D;
-  --chart-5: #6B6560;
+  --background: #FAF8F6;
+  --foreground: #302B2A;
+  --card: #FFFDFC;
+  --card-foreground: #302B2A;
+  --popover: #FFFDFC;
+  --popover-foreground: #302B2A;
+  --primary: #874A55;
+  --primary-foreground: #FFFDFC;
+  --secondary: #F1E5E4;
+  --secondary-foreground: #4A3035;
+  --muted: #F1E5E4;
+  --muted-foreground: #6F5B5B;
+  --accent: #E9D6D7;
+  --accent-foreground: #4A3035;
+  --destructive: #A6424C;
+  --destructive-foreground: #FFFDFC;
+  --border: #E8DEDA;
+  --input: #E8DEDA;
+  --ring: #874A55;
+  --chart-1: #874A55;
+  --chart-2: #B8757D;
+  --chart-3: #D9B8B8;
+  --chart-4: #8A7968;
+  --chart-5: #6F5B5B;
   --radius: 1rem;
-  --sidebar: #EDE6DC;
-  --sidebar-foreground: #2C2C2C;
-  --sidebar-primary: #4F5B3A;
-  --sidebar-primary-foreground: #F7F4EF;
-  --sidebar-accent: #D8CFC4;
-  --sidebar-accent-foreground: #2C2C2C;
-  --sidebar-border: #D8CFC4;
-  --sidebar-ring: #4F5B3A;
+  --sidebar: #FFFDFC;
+  --sidebar-foreground: #302B2A;
+  --sidebar-primary: #874A55;
+  --sidebar-primary-foreground: #FFFDFC;
+  --sidebar-accent: #F1E5E4;
+  --sidebar-accent-foreground: #4A3035;
+  --sidebar-border: #E8DEDA;
+  --sidebar-ring: #874A55;
 }
 
 .dark {
-  --background: #2C2C2C;
-  --foreground: #F7F4EF;
-  --card: #3D3D3D;
-  --card-foreground: #F7F4EF;
-  --popover: #2C2C2C;
-  --popover-foreground: #F7F4EF;
-  --primary: #8B9A6D;
-  --primary-foreground: #2C2C2C;
-  --secondary: #4A4540;
-  --secondary-foreground: #F7F4EF;
-  --muted: #3D3D3D;
-  --muted-foreground: #B8ADA3;
-  --accent: #4A4540;
-  --accent-foreground: #F7F4EF;
-  --destructive: #A65D57;
-  --destructive-foreground: #F7F4EF;
-  --border: #4A4540;
-  --input: #3D3D3D;
-  --ring: #8B9A6D;
-  --chart-1: #8B9A6D;
-  --chart-2: #B8ADA3;
-  --chart-3: #6B6560;
-  --chart-4: #4F5B3A;
-  --chart-5: #D8CFC4;
-  --sidebar: #3D3D3D;
-  --sidebar-foreground: #F7F4EF;
-  --sidebar-primary: #8B9A6D;
-  --sidebar-primary-foreground: #2C2C2C;
-  --sidebar-accent: #4A4540;
-  --sidebar-accent-foreground: #F7F4EF;
-  --sidebar-border: #4A4540;
-  --sidebar-ring: #8B9A6D;
+  --background: #211A1B;
+  --foreground: #F8F1EF;
+  --card: #2C2224;
+  --card-foreground: #F8F1EF;
+  --popover: #2C2224;
+  --popover-foreground: #F8F1EF;
+  --primary: #D69AA2;
+  --primary-foreground: #211A1B;
+  --secondary: #493338;
+  --secondary-foreground: #F8F1EF;
+  --muted: #392B2E;
+  --muted-foreground: #D3BFC0;
+  --accent: #493338;
+  --accent-foreground: #F8F1EF;
+  --destructive: #E17C83;
+  --destructive-foreground: #211A1B;
+  --border: #493338;
+  --input: #392B2E;
+  --ring: #D69AA2;
+  --chart-1: #D69AA2;
+  --chart-2: #B8757D;
+  --chart-3: #8A7968;
+  --chart-4: #F1E5E4;
+  --chart-5: #D3BFC0;
+  --sidebar: #2C2224;
+  --sidebar-foreground: #F8F1EF;
+  --sidebar-primary: #D69AA2;
+  --sidebar-primary-foreground: #211A1B;
+  --sidebar-accent: #493338;
+  --sidebar-accent-foreground: #F8F1EF;
+  --sidebar-border: #493338;
+  --sidebar-ring: #D69AA2;
 }
 
 @theme inline {
@@ -131,6 +130,15 @@
     line-height: 1.8;
     letter-spacing: 0.02em;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary);
 }
 
 /* Custom soft shadow utility */
