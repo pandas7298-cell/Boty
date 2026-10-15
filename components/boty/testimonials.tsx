@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
+import { useMessages, useLocale } from "@/lib/i18n"
+import { reviewTranslations } from "@/lib/review-translations"
+import { products } from "@/lib/products"
+import { getProductCopy } from "@/lib/i18n"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const reviews = [
@@ -62,6 +66,8 @@ const reviews = [
 ]
 
 export function Testimonials() {
+  const locale = useLocale()
+  const t = useMessages()
   const [carouselRef, carouselApi] = useEmblaCarousel({ loop: true, align: "start", containScroll: false })
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
@@ -98,16 +104,16 @@ export function Testimonials() {
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
           <div>
-            <span className="text-sm tracking-[0.2em] text-primary mb-2 block">購入者レビュー</span>
-            <h2 className="font-serif text-3xl leading-tight text-foreground md:text-4xl">レビュー</h2>
-            <p className="text-xs text-muted-foreground mt-2">1688販売ページに寄せられたレビュー</p>
+            <span className="text-sm tracking-[0.2em] text-primary mb-2 block">{t.reviewEyebrow}</span>
+            <h2 className="font-serif text-3xl leading-tight text-foreground md:text-4xl">{t.reviews}</h2>
+            <p className="text-xs text-muted-foreground mt-2">{t.reviewSource}</p>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-xs text-muted-foreground" aria-live="polite">{selectedIndex + 1} / {reviewCount}</span>
-            <button type="button" onClick={goToPrevious} className="w-10 h-10 rounded-full border border-border bg-background flex items-center justify-center" aria-label="前のレビュー">
+            <button type="button" onClick={goToPrevious} className="w-10 h-10 rounded-full border border-border bg-background flex items-center justify-center" aria-label={t.previousReview}>
               <ArrowLeft className="w-4 h-4" />
             </button>
-            <button type="button" onClick={goToNext} className="w-10 h-10 rounded-full border border-border bg-background flex items-center justify-center" aria-label="次のレビュー">
+            <button type="button" onClick={goToNext} className="w-10 h-10 rounded-full border border-border bg-background flex items-center justify-center" aria-label={t.nextReview}>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -117,7 +123,7 @@ export function Testimonials() {
           ref={carouselRef}
           role="region"
           aria-roledescription="carousel"
-          aria-label="購入者レビュー"
+          aria-label={t.reviewEyebrow}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onFocusCapture={() => setIsPaused(true)}
@@ -127,19 +133,24 @@ export function Testimonials() {
           className="overflow-hidden"
         >
           <div className="flex -ml-3">
-            {reviews.map((review, index) => (
+            {reviews.map((review, index) => {
+              const translated = locale === "ja" ? review : reviewTranslations[locale][index as keyof typeof reviewTranslations.en]
+              const productCopy = products.find(product => product.copy.ja.name === review.product)
+              const productName = productCopy ? getProductCopy(productCopy, locale).name : review.product
+              return (
               <div key={`${review.product}-${index}`} role="group" aria-roledescription="slide" aria-label={`${index + 1} / ${reviews.length}`} className="min-w-0 shrink-0 grow-0 basis-[86%] sm:basis-1/2 lg:basis-1/3 pl-3">
                 <article className="h-full rounded-2xl p-4 md:p-5 bg-background boty-shadow">
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs text-primary truncate">{review.product}</span>
+                    <span className="text-xs text-primary truncate">{productName}</span>
                     <span className="text-xs text-foreground shrink-0" aria-label={`${review.rating} / 5`}>{"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)}</span>
                   </div>
-                  <h3 className="font-medium text-foreground text-sm mb-2">{review.title}</h3>
-                  <p className="text-sm text-foreground/80 leading-relaxed line-clamp-4 mb-3">{review.body}</p>
-                  <p className="text-xs text-muted-foreground">{review.profile}</p>
+                  <h3 className="font-medium text-foreground text-sm mb-2">{translated.title}</h3>
+                  <p className="text-sm text-foreground/80 leading-relaxed line-clamp-4 mb-3">{translated.body}</p>
+                  <p className="text-xs text-muted-foreground">{translated.profile}</p>
                 </article>
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>

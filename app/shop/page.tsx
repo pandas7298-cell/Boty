@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
+import { localePageMetadata } from "@/lib/page-metadata"
+import { requestLocale } from "@/lib/server-locale"
 import ShopPageClient from "./shop-page-client"
 
-export const metadata: Metadata = {
-  title: "スクイーズ一覧｜Tabajoy",
-  description: "Tabajoyのスクイーズ一覧。食べものや星のモチーフを、手で触れるやわらかさとともにご紹介します。",
-  alternates: { canonical: "/shop" },
+export async function generateMetadata(): Promise<Metadata> {
+  return localePageMetadata(await requestLocale(), "shop", "/shop")
 }
 
 export default function ShopPage() {

@@ -4,16 +4,14 @@ import { createContext, useContext, useState, type ReactNode } from "react"
 
 export interface CartItem {
   id: string
-  name: string
-  description: string
-  price: number
   quantity: number
+  price: number
   image: string
 }
 
 interface CartContextType {
   items: CartItem[]
-  addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void
+  addItem: (item: Pick<CartItem, "id" | "price" | "image">, quantity?: number) => void
   removeItem: (id: string) => void
   updateQuantity: (id: string, quantity: number) => void
   clearCart: () => void
@@ -35,7 +33,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (existingItem) {
         return currentItems.map(item =>
           item.id === newItem.id
-            ? { ...item, quantity: item.quantity + quantity }
+            ? { ...item, price: newItem.price, image: newItem.image, quantity: item.quantity + quantity }
             : item
         )
       }

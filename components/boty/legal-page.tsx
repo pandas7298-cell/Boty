@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/boty/header"
 import { Footer } from "@/components/boty/footer"
+import { useMessages } from "@/lib/i18n"
 
 type LegalPageProps = {
   title: string
@@ -17,6 +18,7 @@ export function legalPageMetadata(title: string, description: string, path?: str
 }
 
 export function LegalPage({ title, description, children }: LegalPageProps) {
+  const t = useMessages()
   return (
     <main className="min-h-screen">
       <Header />
@@ -30,7 +32,7 @@ export function LegalPage({ title, description, children }: LegalPageProps) {
           <div className="bg-card rounded-3xl p-6 md:p-10 boty-shadow divide-y divide-border/70 [&>section]:py-7 [&>section:first-child]:pt-0 [&>section:last-child]:pb-0 [&_h2]:font-serif [&_h2]:text-xl [&_h2]:md:text-2xl [&_h2]:text-foreground [&_h2]:mb-4 [&_p]:text-sm [&_p]:md:text-base [&_p]:text-muted-foreground [&_p]:leading-8 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_li]:text-sm [&_li]:md:text-base [&_li]:text-muted-foreground [&_li]:leading-7 [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_a]:break-all">
             {children}
           </div>
-          <p className="mt-6 text-xs text-muted-foreground text-center">公開前に内容をご確認ください。未確定の情報は「[要記入]」と表示しています。</p>
+          <p className="mt-6 text-xs text-muted-foreground text-center">{t.legalNote}</p>
         </div>
       </section>
       <Footer />

@@ -1,64 +1,60 @@
 import type { Metadata } from "next"
 import { ProductDetailClient } from "./product-detail-client"
-import { products } from "./product-data"
+import { getProduct, getProductCopy } from "@/lib/products"
+import { localizedPath } from "@/lib/locale"
+import { requestLocale } from "@/lib/server-locale"
 
-type ProductPageProps = {
-  params: Promise<{ id: string }>
-}
+const siteOrigin = "https://tabajoy.com"
+
+type ProductPageProps = { params: Promise<{ id: string }> }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { id } = await params
-  const product = products[id]
-
-  if (!product) {
-    return {
-      title: "商品が見つかりません｜Tabajoy",
-      robots: { index: false, follow: false },
-    }
-  }
-
+  const product = getProduct(id)
+  if (!product) return { title: "Product not found | Tabajoy", robots: { index: false, follow: false } }
+  const locale = await requestLocale()
+  const copy = getProductCopy(product, locale)
+  const path = `/product/${product.id}`
+  const title = `${copy.name} | Tabajoy`
+  const description = copy.description
+  const languages = { en: localizedPath(path, "en"), "zh-CN": localizedPath(path, "zh"), ja: localizedPath(path, "ja") }
+  const canonical = localizedPath(path, locale)
   return {
-    title: `${product.name}｜Tabajoy`,
-    description: product.description,
-    alternates: { canonical: `/product/${product.id}` },
+    title,
+    description,
+    alternates: { canonical, languages: { ...languages, "x-default": path } },
     openGraph: {
       type: "website",
-      title: `${product.name}｜Tabajoy`,
-      description: product.description,
-      url: `/product/${product.id}`,
-      images: [{ url: product.image, alt: `${product.name}の商品画像` }],
+      title,
+      description,
+      url: canonical,
+      locale: locale === "zh" ? "zh_CN" : locale === "ja" ? "ja_JP" : "en_US",
+      images: [{ url: product.image, alt: copy.name }],
     },
   }
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params
-  const product = products[id]
-  const productUrl = `https://tabajoy.com/product/${id}`
-  const productImage = product ? new URL(product.image, "https://tabajoy.com").href : ""
-  const jsonLd = product ? {
+  const product = getProduct(id)
+  const locale = await requestLocale()
+  const copy = product ? getProductCopy(product, locale) : undefined
+  const productPath = `/product/${id}`
+  const productUrl = new URL(locale === "en" ? productPath : `/${locale}${productPath}`, siteOrigin).href
+  const productImage = product ? new URL(product.image, siteOrigin).href : ""
+  const jsonLd = product && copy ? {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.name,
-    description: product.description,
+    name: copy.name,
+    description: copy.description,
     image: productImage,
     url: productUrl,
-    offers: {
-      "@type": "Offer",
-      url: productUrl,
-      priceCurrency: "JPY",
-      price: product.price,
-    },
+    offers: { "@type": "Offer", url: productUrl, priceCurrency: "JPY", price: product.price },
   } : null
 
   return (
     <>
-      {jsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-        />
-      )}
+      {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />}
       <ProductDetailClient product={product} />
     </>
   )
