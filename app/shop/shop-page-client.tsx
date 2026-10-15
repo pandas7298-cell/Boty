@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { SlidersHorizontal, X } from "lucide-react"
-import { Header } from "@/components/boty/header"
-import { Footer } from "@/components/boty/footer"
+import { Header } from "@/components/tabajoy/header"
+import { Footer } from "@/components/tabajoy/footer"
 import { getProductById, getProductCopy, useLocale, useMessages, useLocalizedPath, formatPrice } from "@/lib/i18n"
 import type { StoreProduct } from "@/lib/products"
 
@@ -65,7 +65,7 @@ export default function ShopPageClient() {
             {filteredProducts.map((product, index) => {
               const copy = getProductCopy(product, locale)
               return <Link key={product.id} href={localize(`/product/${product.id}`)} className={`group transition-all duration-700 ease-out ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} style={{ transitionDelay: `${index * 80}ms` }}>
-                <div className="bg-card rounded-3xl overflow-hidden boty-shadow boty-transition group-hover:scale-[1.02]"><div className="relative aspect-square bg-muted overflow-hidden"><div className="absolute inset-0 bg-gradient-to-br from-muted via-muted/50 to-muted animate-pulse" /><Image src={product.image} alt={copy.name} fill className="object-cover boty-transition group-hover:scale-105" onLoad={event => { event.currentTarget.parentElement?.querySelector(".animate-pulse")?.classList.add("opacity-0") }} /></div><div className="p-6"><h2 className="font-serif text-xl text-foreground mb-2">{copy.name}</h2><p className="text-sm text-muted-foreground mb-3">{copy.description}</p><div className="flex flex-wrap gap-2 mb-3">{copy.tags.map(tag => <span key={tag} className="text-xs text-primary/80">{tag}</span>)}</div><p className="text-lg font-medium text-foreground">{formatPrice(product.price, locale)}（{t.taxIncluded}）</p></div></div>
+                <div className="bg-card rounded-3xl overflow-hidden storefront-shadow storefront-transition group-hover:scale-[1.02]"><div className="relative aspect-square bg-muted overflow-hidden"><div className="absolute inset-0 bg-gradient-to-br from-muted via-muted/50 to-muted animate-pulse" /><Image src={product.image} alt={copy.name} fill className="object-cover storefront-transition group-hover:scale-105" onLoad={event => { event.currentTarget.parentElement?.querySelector(".animate-pulse")?.classList.add("opacity-0") }} /></div><div className="p-6"><h2 className="font-serif text-xl text-foreground mb-2">{copy.name}</h2><p className="text-sm text-muted-foreground mb-3">{copy.description}</p><div className="flex flex-wrap gap-2 mb-3">{copy.tags.map(tag => <span key={tag} className="text-xs text-primary/80">{tag}</span>)}</div><p className="text-lg font-medium text-foreground">{formatPrice(product.price, locale)}（{t.taxIncluded}）</p></div></div>
               </Link>
             })}
           </div>

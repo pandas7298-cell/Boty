@@ -41,7 +41,6 @@ export async function generateMetadata(): Promise<Metadata> {
       title: metadataByLocale[locale].title,
       description: metadataByLocale[locale].description,
     },
-    generator: "v0.app",
     icons: {
       icon: "/tabajoy-icon.jpeg",
       apple: "/apple-icon.png",

@@ -47,11 +47,11 @@ export function CartDrawer() {
                       {copy && <p className="text-muted-foreground mb-3 text-sm">{copy.description}</p>}
                       <div className="flex items-center gap-3">
                         <div className="flex items-center border border-border rounded-full">
-                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} className="p-1.5 hover:bg-muted boty-transition rounded-l-full" aria-label={t.decreaseQty}><Minus className="w-3 h-3" /></button>
+                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} className="p-1.5 hover:bg-muted storefront-transition rounded-l-full" aria-label={t.decreaseQty}><Minus className="w-3 h-3" /></button>
                           <span className="px-3 text-sm font-medium">{item.quantity}</span>
-                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} className="p-1.5 hover:bg-muted boty-transition rounded-r-full" aria-label={t.increaseQty}><Plus className="w-3 h-3" /></button>
+                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} className="p-1.5 hover:bg-muted storefront-transition rounded-r-full" aria-label={t.increaseQty}><Plus className="w-3 h-3" /></button>
                         </div>
-                        <button type="button" onClick={() => removeItem(item.id)} className="p-1.5 text-muted-foreground hover:text-destructive boty-transition" aria-label={t.removeProduct}><Trash2 className="w-4 h-4" /></button>
+                        <button type="button" onClick={() => removeItem(item.id)} className="p-1.5 text-muted-foreground hover:text-destructive storefront-transition" aria-label={t.removeProduct}><Trash2 className="w-4 h-4" /></button>
                       </div>
                     </div>
                     <div className="text-right"><p className="font-medium text-foreground">{formatPrice(item.price * item.quantity, locale)}</p></div>
@@ -70,7 +70,7 @@ export function CartDrawer() {
               <div className="flex justify-between text-base font-medium text-foreground pt-2 border-t border-border/50"><span>{t.total}</span><span>{formatPrice(total, locale)}</span></div>
             </div>
             <button type="button" disabled className="w-full bg-primary text-primary-foreground py-4 rounded-full font-medium opacity-60 cursor-not-allowed" aria-label={t.checkoutPreparing}>{t.checkoutPreparing}</button>
-            <DrawerClose asChild><button type="button" className="w-full border border-border text-foreground py-4 rounded-full font-medium hover:bg-muted boty-transition">{t.continueShopping}</button></DrawerClose>
+            <DrawerClose asChild><button type="button" className="w-full border border-border text-foreground py-4 rounded-full font-medium hover:bg-muted storefront-transition">{t.continueShopping}</button></DrawerClose>
           </DrawerFooter>
         )}
       </DrawerContent>

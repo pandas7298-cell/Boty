@@ -1,6 +1,6 @@
 "use client"
 
-import { LegalPage } from "@/components/boty/legal-page"
+import { LegalPage } from "@/components/tabajoy/legal-page"
 import { useMessages, useLocale, useLocalizedPath } from "@/lib/i18n"
 
 export default function TokushohoPage() {

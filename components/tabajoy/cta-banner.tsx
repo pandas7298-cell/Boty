@@ -33,7 +33,7 @@ export function CTABanner() {
             <span className="inline-block rounded-full bg-background px-4 py-2 text-xs text-primary mb-5">Tabajoy</span>
             <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-5">{t.ctaTitle}</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">{t.ctaDescription}</p>
-            <Link href={localize("/shop")} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-full text-sm boty-transition hover:bg-primary/90">
+            <Link href={localize("/shop")} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-full text-sm storefront-transition hover:bg-primary/90">
               {t.heroCta} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

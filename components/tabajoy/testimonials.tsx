@@ -139,7 +139,7 @@ export function Testimonials() {
               const productName = productCopy ? getProductCopy(productCopy, locale).name : review.product
               return (
               <div key={`${review.product}-${index}`} role="group" aria-roledescription="slide" aria-label={`${index + 1} / ${reviews.length}`} className="min-w-0 shrink-0 grow-0 basis-[86%] sm:basis-1/2 lg:basis-1/3 pl-3">
-                <article className="h-full rounded-2xl p-4 md:p-5 bg-background boty-shadow">
+                <article className="h-full rounded-2xl p-4 md:p-5 bg-background storefront-shadow">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="text-xs text-primary truncate">{productName}</span>
                     <span className="text-xs text-foreground shrink-0" aria-label={`${review.rating} / 5`}>{"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)}</span>

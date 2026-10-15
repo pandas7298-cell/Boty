@@ -28,7 +28,7 @@ export function Footer() {
     const href = link.href.startsWith("/") ? localize(link.href) : link.href
     return (
       <li key={link.name}>
-        <Link href={href} className="text-sm text-muted-foreground hover:text-foreground boty-transition">
+        <Link href={href} className="text-sm text-muted-foreground hover:text-foreground storefront-transition">
           {link.name}
         </Link>
       </li>
@@ -49,9 +49,9 @@ export function Footer() {
             <h2 className="font-serif text-3xl text-foreground mb-4">Tabajoy</h2>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">{t.footerAbout}</p>
             <div className="flex gap-4">
-              <a href={socialUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Instagram"><Instagram className="w-4 h-4" /></a>
-              <a href={socialUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Facebook"><Facebook className="w-4 h-4" /></a>
-              <a href={socialUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground boty-transition boty-shadow" aria-label="Twitter"><Twitter className="w-4 h-4" /></a>
+              <a href={socialUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground storefront-transition storefront-shadow" aria-label="Instagram"><Instagram className="w-4 h-4" /></a>
+              <a href={socialUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground storefront-transition storefront-shadow" aria-label="Facebook"><Facebook className="w-4 h-4" /></a>
+              <a href={socialUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground/60 hover:text-foreground storefront-transition storefront-shadow" aria-label="Twitter"><Twitter className="w-4 h-4" /></a>
             </div>
           </div>
 
@@ -75,8 +75,8 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">{t.copyright.replace("{year}", String(new Date().getFullYear()))}</p>
             <div className="flex gap-6">
-              <Link href={localize("/privacy")} className="text-sm text-muted-foreground hover:text-foreground boty-transition">{t.privacy}</Link>
-              <Link href={localize("/terms")} className="text-sm text-muted-foreground hover:text-foreground boty-transition">{t.terms}</Link>
+              <Link href={localize("/privacy")} className="text-sm text-muted-foreground hover:text-foreground storefront-transition">{t.privacy}</Link>
+              <Link href={localize("/terms")} className="text-sm text-muted-foreground hover:text-foreground storefront-transition">{t.terms}</Link>
             </div>
           </div>
         </div>

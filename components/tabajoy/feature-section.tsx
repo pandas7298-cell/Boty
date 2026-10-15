@@ -50,7 +50,7 @@ export function FeatureSection() {
         </div>
 
         <div className="mt-14 md:mt-20 max-w-4xl mx-auto">
-          <div className="relative aspect-video rounded-3xl overflow-hidden bg-card boty-shadow">
+          <div className="relative aspect-video rounded-3xl overflow-hidden bg-card storefront-shadow">
             <video autoPlay muted loop playsInline controls className="absolute inset-0 w-full h-full object-cover" poster="/products/salmon-sushi-cat.png">
               <source src="/products/salmon-sushi-cat.mp4" type="video/mp4" />
             </video>

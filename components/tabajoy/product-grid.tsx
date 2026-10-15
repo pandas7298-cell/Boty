@@ -76,8 +76,8 @@ export function ProductGrid() {
             return (
               <div key={product.id} className={`group relative transition-all duration-500 ease-out ${isVisible && !isTransitioning ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} style={{ transitionDelay: isTransitioning ? "0ms" : `${index * 80}ms` }}>
                 <Link href={locale === "en" ? `/product/${product.id}` : `/${locale}/product/${product.id}`} className="block rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                  <div className="bg-background rounded-3xl overflow-hidden boty-shadow boty-transition group-hover:scale-[1.02]">
-                    <div className="relative aspect-square bg-muted overflow-hidden"><Image src={product.image} alt={copy.name} fill className="object-cover boty-transition group-hover:scale-105" /></div>
+                  <div className="bg-background rounded-3xl overflow-hidden storefront-shadow storefront-transition group-hover:scale-[1.02]">
+                    <div className="relative aspect-square bg-muted overflow-hidden"><Image src={product.image} alt={copy.name} fill className="object-cover storefront-transition group-hover:scale-105" /></div>
                     <div className="p-5">
                       <h3 className="font-serif text-xl text-foreground mb-2">{copy.name}</h3>
                       <p className="text-sm text-muted-foreground mb-3">{copy.description}</p>
@@ -86,13 +86,13 @@ export function ProductGrid() {
                     </div>
                   </div>
                 </Link>
-                <button type="button" className="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-background/95 text-foreground boty-transition boty-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" onClick={() => addItem({ id: product.id, price: product.price, image: product.image })} aria-label={t.addProductToCart.replace("{product}", copy.name)}><ShoppingBag className="w-4 h-4" /></button>
+                <button type="button" className="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-background/95 text-foreground storefront-transition storefront-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" onClick={() => addItem({ id: product.id, price: product.price, image: product.image })} aria-label={t.addProductToCart.replace("{product}", copy.name)}><ShoppingBag className="w-4 h-4" /></button>
               </div>
             )
           })}
         </div>
 
-        <div className="text-center mt-10 md:mt-12"><Link href={locale === "en" ? "/shop" : `/${locale}/shop`} className="inline-flex min-h-11 items-center justify-center gap-2 bg-transparent border border-foreground/20 text-foreground px-8 py-3 rounded-full text-sm boty-transition hover:bg-foreground/5">{t.viewAll}</Link></div>
+        <div className="text-center mt-10 md:mt-12"><Link href={locale === "en" ? "/shop" : `/${locale}/shop`} className="inline-flex min-h-11 items-center justify-center gap-2 bg-transparent border border-foreground/20 text-foreground px-8 py-3 rounded-full text-sm storefront-transition hover:bg-foreground/5">{t.viewAll}</Link></div>
       </div>
     </section>
   )
